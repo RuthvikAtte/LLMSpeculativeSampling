@@ -18,8 +18,14 @@ Results are written to `results/<script_name>_results.json`.
 ```bash
 module load conda
 conda activate <your-env>
-pip install vllm==0.11.0
+pip install "vllm>=0.19.1"
 ```
+
+> **Note:** vLLM 0.11.0 does **not** support `method="draft_model"` in the V1 engine
+> (`NotImplementedError`). Draft-model speculative decoding in the V1 engine was added
+> in a later release. Use **vLLM ≥ 0.19.1** for `run_specdecode.py`.
+> The two standalone scripts (`run_32b_standalone.py`, `run_2b_standalone.py`) work
+> on any recent vLLM version.
 
 The dataset file `mathvision_mini.json` must be present in the repo root
 (already included).  To use a different dataset, replace the file; each
@@ -132,8 +138,7 @@ speculative_config={
     "method": "draft_model",
     "model": "Qwen/Qwen3-2B",
     "num_speculative_tokens": 5,
-    "speculative_draft_tensor_parallel_size": 1,
-    "draft_dtype": "bfloat16",
+    "draft_tensor_parallel_size": 1,
 }
 ```
 - `method="draft_model"` activates vLLM's native draft-model speculative path.

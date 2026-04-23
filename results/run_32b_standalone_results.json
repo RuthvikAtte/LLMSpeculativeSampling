@@ -1,0 +1,64 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "proxy_for": "Qwen/Qwen3-32B",
+  "total_questions": 6,
+  "total_latency_s": 3.936070821946487,
+  "total_tokens_generated": 1296,
+  "average_tokens_per_second": 329.2623681397824,
+  "per_question": [
+    {
+      "question_idx": 0,
+      "question": "A right triangle has legs of length 3 and 4. What is the length of the hypotenuse?",
+      "reference_answer": "5",
+      "generated_text": " To find the length of the hypotenuse of a right triangle, we use the Pythagorean theorem. The Pythagorean theorem states that in a right triangle, the square of the hypotenuse (\\( c \\)) is equal to the sum of the squares of the other two sides (\\( a \\) and \\( b \\)):\n\n\\[\nc^2 = a^2 + b^2\n\\]\n\nGiven the legs of the right triangle are \\( a = 3 \\) and \\( b = 4 \\), we can substitute these values into the equation:\n\n\\[\nc^2 = 3^2 + 4^2\n\\]\n\nCalculate the squares of the legs:\n\n\\[\n3^2 = 9\n\\]\n\\[\n4^2 = 16\n\\]\n\nAdd these values together:\n\n\\[\nc^2 = 9 + 16 = 25\n\\]\n\nTo find \\( c \\), we take the square root of both sides:\n\n\\[\nc = \\sqrt{25} = 5\n\\]\n\nTherefore, the length of the hypotenuse is \\(\\boxed{5}\\).",
+      "latency_s": 0.953905571019277,
+      "tokens_generated": 239,
+      "tokens_per_second": 250.54890888688413
+    },
+    {
+      "question_idx": 1,
+      "question": "Find all real solutions to x^2 - 5x + 6 = 0.",
+      "reference_answer": "x = 2 or x = 3",
+      "generated_text": " To find all real solutions to the quadratic equation x^2 - 5x + 6 = 0, we can use the quadratic formula. The quadratic formula states that if we have a quadratic equation of the form ax^2 + bx + c = 0, then the solutions are given by x = (-b \u00b1 \u221a(b^2 - 4ac)) / 2a.\n\nIn our equation, a = 1, b = -5, and c = 6. Plugging these values into the quadratic formula, we get:\n\nx = (-(-5) \u00b1 \u221a((-5)^2 - 4(1)(6))) / 2(1)\n\nSimplifying, we get:\n\nx = (5 \u00b1 \u221a(25 - 24)) / 2\n\nx = (5 \u00b1 1) / 2\n\nThis gives us two solutions:\n\n1. x = (5 + 1) / 2 = 6 / 2 = 3\n2. x = (5 - 1) / 2 = 4 / 2 = 2\n\nTherefore, the solutions to the quadratic equation x^2 - 5x + 6 = 0 are x = ",
+      "latency_s": 0.7221354620996863,
+      "tokens_generated": 256,
+      "tokens_per_second": 354.50412482950577
+    },
+    {
+      "question_idx": 2,
+      "question": "What is the area of a circle with radius 7?",
+      "reference_answer": "49\\pi",
+      "generated_text": " The formula for the area of a circle is:\n\\[\n\\text{Area} = \\pi r^2\n\\]\nwhere $r$ is the radius of the circle. Substituting the radius of 7 into the formula, we get:\n\\[\n\\text{Area} = \\pi \\times 7^2 = \\pi \\times 49 = 49\\pi\n\\]\nTherefore, the area of the circle is $\\boxed{49\\pi}$. Step-by-step, we have the formula for the area of a circle: \\[\n\\text{Area} = \\pi r^2\n\\]\nNext, substitute the radius 7 into this formula, \\[\n\\text{Area} = \\pi \\times 7^2 = \\pi \\times 49\n\\]\nFinally, simplify the equation: \\[\n\\text{Area} = 49\\pi\n\\]\nTherefore, the area of the circle is $\\boxed{49\\pi}$.",
+      "latency_s": 0.6093975468538702,
+      "tokens_generated": 211,
+      "tokens_per_second": 346.2435992552437
+    },
+    {
+      "question_idx": 3,
+      "question": "A train travels 120 miles in 2 hours. What is its average speed in miles per hour?",
+      "reference_answer": "60",
+      "generated_text": " To determine the average speed of the train in miles per hour, we need to use the formula for average speed, which is given by:\n\n\\[\n\\text{Average speed} = \\frac{\\text{Total distance}}{\\text{Total time}}\n\\]\n\nFrom the problem, we know that the train travels 120 miles in 2 hours. Plugging these values into the formula, we get:\n\n\\[\n\\text{Average speed} = \\frac{120 \\text{ miles}}{2 \\text{ hours}}\n\\]\n\nNow, we perform the division:\n\n\\[\n\\text{Average speed} = 60 \\text{ miles per hour}\n\\]\n\nTherefore, the average speed of the train is \\boxed{60} miles per hour.",
+      "latency_s": 0.461200495949015,
+      "tokens_generated": 161,
+      "tokens_per_second": 349.0889567859404
+    },
+    {
+      "question_idx": 4,
+      "question": "Evaluate the integral \\int_0^1 x^2 \\, dx.",
+      "reference_answer": "1/3",
+      "generated_text": " To evaluate the integral \\(\\int_0^1 x^2 \\, dx\\), we will follow these steps:\n\n1. Identify the integrand and the limits of integration.\n2. Find the antiderivative of the integrand.\n3. Apply the Fundamental Theorem of Calculus to evaluate the definite integral.\n\nStep 1: Identify the integrand and the limits of integration.\nThe integrand is \\(x^2\\), and the limits of integration are from 0 to 1.\n\nStep 2: Find the antiderivative of the integrand.\nThe antiderivative of \\(x^2\\) is found using the power rule for integration. The power rule states that the antiderivative of \\(x^n\\) is \\(\\frac{x^{n+1}}{n+1}\\) for any real number \\(n \\neq -1\\). Applying this rule to \\(x^2\\):\n\n\\[\n\\int x^2 \\, dx = \\frac{x^{2+1}}{2+1} = \\frac{x^3}{3} + C\n\\]\n\nwhere \\(C\\) is the constant of integration. Since we are dealing with a definite integral, we can ignore the constant \\(C\\) when evaluating the",
+      "latency_s": 0.7126797139644623,
+      "tokens_generated": 256,
+      "tokens_per_second": 359.20764262523323
+    },
+    {
+      "question_idx": 5,
+      "question": "How many ways can you arrange the letters in the word MATH?",
+      "reference_answer": "24",
+      "generated_text": " To determine the number of ways to arrange the letters in the word \"MATH,\" we need to consider that the word consists of four distinct letters. The formula for finding the number of distinct permutations of a word is given by:\n\n\\[\n\\text{Number of permutations} = \\frac{\\text{Number of elements}}{\\text{Number of repetitions}}\n\\]\n\nFor the word \"MATH,\" which has 4 letters with no repetitions, the formula simplifies to:\n\n\\[\n\\text{Number of permutations} = 4!\n\\]\n\nWe need to calculate the factorial of 4:\n\n\\[\n4! = 4 \\times 3 \\times 2 \\times 1 = 24\n\\]\n\nThus, the number of ways to arrange the letters in the word \"MATH\" is:\n\n\\boxed{24}",
+      "latency_s": 0.47675203206017613,
+      "tokens_generated": 173,
+      "tokens_per_second": 362.8720768161587
+    }
+  ]
+}

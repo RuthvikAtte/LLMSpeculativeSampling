@@ -1,0 +1,130 @@
+{
+  "target_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "proxy_for_target": "Qwen/Qwen3-32B",
+  "draft_model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+  "proxy_for_draft": "Qwen/Qwen3-2B",
+  "num_speculative_tokens": 5,
+  "total_questions": 6,
+  "total_latency_s": 22.64697902253829,
+  "total_tokens_generated": 1280,
+  "average_tokens_per_second": 56.51967967675261,
+  "average_acceptance_rate": 0.6327712147463699,
+  "average_mean_acceptance_length": 4.16385607373185,
+  "average_theoretical_speedup": 2.7320462736670237,
+  "per_question": [
+    {
+      "question_idx": 0,
+      "question": "A right triangle has legs of length 3 and 4. What is the length of the hypotenuse?",
+      "reference_answer": "5",
+      "generated_text": " To find the length of the hypotenuse of a right triangle, we can use the Pythagorean theorem. The Pythagorean theorem states that in a right triangle, the square of the length of the hypotenuse (c) is equal to the sum of the squares of the lengths of the other two sides (a and b). Mathematically, this is expressed as:\n\n\\[ c^2 = a^2 + b^2 \\]\n\nIn this problem, the legs of the right triangle are 3 and 4. So, we can substitute these values into the Pythagorean theorem:\n\n\\[ c^2 = 3^2 + 4^2 \\]\n\nNext, we calculate the squares of 3 and 4:\n\n\\[ 3^2 = 9 \\]\n\\[ 4^2 = 16 \\]\n\nNow, we add these two results together:\n\n\\[ c^2 = 9 + 16 \\]\n\\[ c^2 = 25 \\]\n\nTo find the length of the hypotenuse, we take the square root of both sides of the equation:\n\n\\[ c = \\sqrt{25} \\]\n\\[ c = 5 \\]\n\nTherefore, the length of the hypotenuse is \\",
+      "latency_s": 3.6407410968095064,
+      "tokens_generated": 256,
+      "tokens_per_second": 70.31535426244417,
+      "acceptance_rate": 0.8851063829787233,
+      "mean_acceptance_length": 5.425531914893617,
+      "theoretical_speedup": 4.518882242284699,
+      "per_pos_acceptance_rate": [
+        0.9574468085106383,
+        0.9574468085106383,
+        0.8936170212765957,
+        0.851063829787234,
+        0.7659574468085106
+      ]
+    },
+    {
+      "question_idx": 1,
+      "question": "Find all real solutions to x^2 - 5x + 6 = 0.",
+      "reference_answer": "x = 2 or x = 3",
+      "generated_text": " To find all real solutions to the quadratic equation \\( x^2 - 5x + 6 = 0 \\), we can use the quadratic formula, which is given by:\n\n\\[\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n\\]\n\nHere, the coefficients \\( a \\), \\( b \\), and \\( c \\) from the standard quadratic equation \\( ax^2 + bx + c = 0 \\) are:\n- \\( a = 1 \\)\n- \\( b = -5 \\)\n- \\( c = 6 \\)\n\nNow, substitute these values into the quadratic formula:\n\n\\[\nx = \\frac{-(-5) \\pm \\sqrt{(-5)^2 - 4 \\cdot 1 \\cdot 6}}{2 \\cdot 1}\n\\]\n\nSimplify the expression inside the square root:\n\n\\[\nx = \\frac{5 \\pm \\sqrt{25 - 24}}{2}\n\\]\n\n\\[\nx = \\frac{5 \\pm \\sqrt{1}}{2}\n\\]\n\nSince \\(\\sqrt{1} = 1\\), the equation simplifies to:\n\n\\[\nx = \\frac{5 \\",
+      "latency_s": 4.136738472850993,
+      "tokens_generated": 256,
+      "tokens_per_second": 61.884501928295144,
+      "acceptance_rate": 0.6947368421052632,
+      "mean_acceptance_length": 4.473684210526316,
+      "theoretical_speedup": 2.907523167175465,
+      "per_pos_acceptance_rate": [
+        0.8596491228070176,
+        0.6842105263157895,
+        0.6842105263157895,
+        0.6491228070175439,
+        0.5964912280701754
+      ]
+    },
+    {
+      "question_idx": 2,
+      "question": "What is the area of a circle with radius 7?",
+      "reference_answer": "49\\pi",
+      "generated_text": " The area of a circle is given by the formula A = \u03c0r\u00b2, where r is the radius of the circle.\nIn this case, the radius is 7. So, the area of the circle is A = \u03c0(7)\u00b2 = 49\u03c0.\nSo, the final answer is $\\boxed{49\\pi}$.",
+      "latency_s": 1.6495729500893503,
+      "tokens_generated": 72,
+      "tokens_per_second": 43.64766044211628,
+      "acceptance_rate": 0.44545454545454544,
+      "mean_acceptance_length": 3.227272727272727,
+      "theoretical_speedup": 1.7891895895710055,
+      "per_pos_acceptance_rate": [
+        0.6818181818181818,
+        0.5909090909090909,
+        0.36363636363636365,
+        0.36363636363636365,
+        0.22727272727272727
+      ]
+    },
+    {
+      "question_idx": 3,
+      "question": "A train travels 120 miles in 2 hours. What is its average speed in miles per hour?",
+      "reference_answer": "60",
+      "generated_text": " To determine the average speed of the train, we use the formula for average speed, which is the total distance traveled divided by the total time taken. The given information states that the train travels 120 miles in 2 hours. \n\nStep 1: Identify the total distance traveled.\nThe train travels 120 miles.\n\nStep 2: Identify the total time taken.\nThe train takes 2 hours.\n\nStep 3: Use the formula for average speed.\nAverage speed = Total distance / Total time\n\nStep 4: Substitute the given values into the formula.\nAverage speed = 120 miles / 2 hours\n\nStep 5: Perform the division.\nAverage speed = 60 miles per hour\n\nStep 6: Write the final answer in the required format.\n\\boxed{60}\n\nTherefore, the average speed of the train is 60 miles per hour.",
+      "latency_s": 3.2011394558940083,
+      "tokens_generated": 184,
+      "tokens_per_second": 57.47953268990364,
+      "acceptance_rate": 0.6318181818181818,
+      "mean_acceptance_length": 4.159090909090909,
+      "theoretical_speedup": 2.543270612490376,
+      "per_pos_acceptance_rate": [
+        0.7954545454545454,
+        0.7727272727272727,
+        0.6363636363636364,
+        0.5227272727272727,
+        0.4318181818181818
+      ]
+    },
+    {
+      "question_idx": 4,
+      "question": "Evaluate the integral \\int_0^1 x^2 \\, dx.",
+      "reference_answer": "1/3",
+      "generated_text": " To evaluate the integral \\(\\int_0^1 x^2 \\, dx\\), we will follow these steps:\n\n1. Identify the function to be integrated, which is \\(f(x) = x^2\\).\n2. Find the antiderivative of \\(f(x)\\).\n3. Apply the Fundamental Theorem of Calculus, which states that the definite integral of a function \\(f(x)\\) from \\(a\\) to \\(b\\) is the antiderivative of \\(f(x)\\) evaluated at \\(b\\) minus the antiderivative evaluated at \\(a\\).\n\nLet's go through these steps:\n\n1. The function to be integrated is \\(f(x) = x^2\\).\n\n2. To find the antiderivative of \\(x^2\\), we use the power rule for integration, which states that the antiderivative of \\(x^n\\) is \\(\\frac{x^{n+1}}{n+1}\\) for any real number \\(n \\neq -1\\). Applying this rule, we get:\n   \\[\n   \\int x^2 \\, dx = \\frac{x^3}{3} + C\n   \\]\n   where \\(C\\) is the constant of integration. For definite integr",
+      "latency_s": 4.483739278977737,
+      "tokens_generated": 256,
+      "tokens_per_second": 57.095202033773546,
+      "acceptance_rate": 0.6745762711864407,
+      "mean_acceptance_length": 4.372881355932203,
+      "theoretical_speedup": 2.783357615050206,
+      "per_pos_acceptance_rate": [
+        0.8813559322033898,
+        0.7288135593220338,
+        0.6949152542372882,
+        0.5932203389830508,
+        0.4745762711864407
+      ]
+    },
+    {
+      "question_idx": 5,
+      "question": "How many ways can you arrange the letters in the word MATH?",
+      "reference_answer": "24",
+      "generated_text": " To determine the number of ways to arrange the letters in the word \"MATH,\" we need to consider the number of distinct permutations of the four letters, taking into account the fact that the word contains repeated letters.\n\nHere are the steps:\n\n1. **Identify the total number of letters and their repetitions:**\n   - The word \"MATH\" consists of 4 letters.\n   - There are 3 distinct letters: M, A, and T.\n   - The letter H appears once.\n\n2. **Calculate the total number of permutations of the 4 letters:**\n   - The total number of permutations of 4 distinct letters is given by the factorial of 4, denoted as \\(4!\\).\n   \\[\n   4! = 4 \\times 3 \\times 2 \\times 1 = 24\n   \\]\n\n3. **Account for the repeated letter H:**\n   - Since H is the only repeated letter in the word \"MATH,\" each permutation of the letters can be repeated without changing the overall arrangement.\n   - We need to divide the total number of permutations by the number of ways to arrange the 3 distinct letters M, A, and T, which is \\(3!\\).\n   \\[\n  ",
+      "latency_s": 5.535047767916694,
+      "tokens_generated": 256,
+      "tokens_per_second": 46.25073002691617,
+      "acceptance_rate": 0.4649350649350649,
+      "mean_acceptance_length": 3.324675324675325,
+      "theoretical_speedup": 1.8500544154303915,
+      "per_pos_acceptance_rate": [
+        0.7922077922077922,
+        0.5324675324675324,
+        0.42857142857142855,
+        0.3246753246753247,
+        0.24675324675324675
+      ]
+    }
+  ]
+}
