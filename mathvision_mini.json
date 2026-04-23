@@ -1,0 +1,26 @@
+[
+  {
+    "question": "A right triangle has legs of length 3 and 4. What is the length of the hypotenuse?",
+    "answer": "5"
+  },
+  {
+    "question": "Find all real solutions to x^2 - 5x + 6 = 0.",
+    "answer": "x = 2 or x = 3"
+  },
+  {
+    "question": "What is the area of a circle with radius 7?",
+    "answer": "49\\pi"
+  },
+  {
+    "question": "A train travels 120 miles in 2 hours. What is its average speed in miles per hour?",
+    "answer": "60"
+  },
+  {
+    "question": "Evaluate the integral \\int_0^1 x^2 \\, dx.",
+    "answer": "1/3"
+  },
+  {
+    "question": "How many ways can you arrange the letters in the word MATH?",
+    "answer": "24"
+  }
+]
