@@ -1,0 +1,99 @@
+(Worker pid=3391230) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=3391229) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=3391228) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=3391231) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+(Worker pid=3391230) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=3391229) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=3391228) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker pid=3391231) <frozen importlib._bootstrap_external>:1301: FutureWarning: The cuda.nvrtc module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.nvrtc module instead.
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:   0% Completed | 0/17 [00:00<?, ?it/s]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:   6% Completed | 1/17 [00:08<02:13,  8.34s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  12% Completed | 2/17 [00:27<03:37, 14.47s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  18% Completed | 3/17 [00:44<03:39, 15.70s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  24% Completed | 4/17 [01:05<03:51, 17.80s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  29% Completed | 5/17 [01:24<03:39, 18.29s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  35% Completed | 6/17 [01:41<03:17, 17.98s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  41% Completed | 7/17 [02:02<03:09, 18.90s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  47% Completed | 8/17 [02:22<02:52, 19.16s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  53% Completed | 9/17 [02:42<02:36, 19.52s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  59% Completed | 10/17 [03:06<02:25, 20.80s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  65% Completed | 11/17 [03:27<02:04, 20.77s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  71% Completed | 12/17 [03:47<01:43, 20.75s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  76% Completed | 13/17 [04:02<01:16, 19.07s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  82% Completed | 14/17 [04:25<01:00, 20.28s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  88% Completed | 15/17 [04:46<00:40, 20.24s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards:  94% Completed | 16/17 [05:10<00:21, 21.37s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards: 100% Completed | 17/17 [05:16<00:00, 16.76s/it]
+(Worker_TP0 pid=3391228) Loading safetensors checkpoint shards: 100% Completed | 17/17 [05:16<00:00, 18.60s/it]
+(Worker_TP0 pid=3391228) 
+(Worker_TP1 pid=3391229) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+(Worker_TP3 pid=3391231) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+(Worker_TP2 pid=3391230) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+(Worker_TP0 pid=3391228) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+(EngineCore pid=3391222) Process EngineCore:
+(EngineCore pid=3391222) Traceback (most recent call last):
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=3391222)     self.run()
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=3391222)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1112, in run_engine_core
+(EngineCore pid=3391222)     raise e
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1082, in run_engine_core
+(EngineCore pid=3391222)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=3391222)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=3391222)     return func(*args, **kwargs)
+(EngineCore pid=3391222)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 848, in __init__
+(EngineCore pid=3391222)     super().__init__(
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 114, in __init__
+(EngineCore pid=3391222)     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=3391222)                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 101, in __init__
+(EngineCore pid=3391222)     super().__init__(vllm_config)
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=3391222)     return func(*args, **kwargs)
+(EngineCore pid=3391222)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 103, in __init__
+(EngineCore pid=3391222)     self._init_executor()
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 190, in _init_executor
+(EngineCore pid=3391222)     self.workers = WorkerProc.wait_for_ready(unready_workers)
+(EngineCore pid=3391222)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222)   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 736, in wait_for_ready
+(EngineCore pid=3391222)     raise e from None
+(EngineCore pid=3391222) Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+Traceback (most recent call last):
+  File "/u/ratte/LLMSpeculativeSampling/run_specdecode.py", line 302, in <module>
+    main()
+  File "/u/ratte/LLMSpeculativeSampling/run_specdecode.py", line 167, in main
+    llm = LLM(
+          ^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/entrypoints/llm.py", line 382, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 177, in from_engine_args
+    return cls(
+           ^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py", line 111, in __init__
+    self.engine_core = EngineCoreClient.make_client(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 101, in make_client
+    return SyncMPClient(vllm_config, executor_class, log_stats)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 710, in __init__
+    super().__init__(
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 535, in __init__
+    with launch_core_engines(
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 998, in launch_core_engines
+    wait_for_engine_startup(
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1057, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {'EngineCore': 1}
+/u/ratte/.conda/envs/specsampling/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 2 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

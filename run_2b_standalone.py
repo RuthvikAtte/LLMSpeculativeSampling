@@ -8,6 +8,7 @@ import json
 import os
 import time
 
+from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 
 # ---------------------------------------------------------------------------
@@ -15,7 +16,8 @@ from vllm import LLM, SamplingParams
 # ---------------------------------------------------------------------------
 MODEL_ID = "Qwen/Qwen3-2B"
 DATASET_PATH = "mathvision_mini.json"
-RESULTS_PATH = "results/run_2b_standalone_results.json"
+RESULTS_DIR  = os.environ.get("RESULTS_DIR", "results")
+RESULTS_PATH = f"{RESULTS_DIR}/run_2b_standalone_results.json"
 SYSTEM_PREFIX = "Please reason step by step, and put your final answer within \\boxed{}."
 
 SAMPLING_PARAMS = SamplingParams(
@@ -35,14 +37,24 @@ def load_dataset(path: str) -> list[dict]:
     return data
 
 
-def build_prompt(question: str) -> str:
-    return f"{SYSTEM_PREFIX}\n\n{question}"
+def build_prompt(question: str, tokenizer: AutoTokenizer) -> str:
+    messages = [
+        {"role": "system", "content": SYSTEM_PREFIX},
+        {"role": "user",   "content": question},
+    ]
+    return tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
+        enable_thinking=True,
+    )
 
 
 def main():
-    os.makedirs("results", exist_ok=True)
+    os.makedirs(RESULTS_DIR, exist_ok=True)
 
     print(f"Loading model: {MODEL_ID}")
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     llm = LLM(
         model=MODEL_ID,
         tensor_parallel_size=4,
@@ -58,7 +70,7 @@ def main():
     for idx, item in enumerate(dataset):
         question = item["question"]
         answer = item.get("answer", "")
-        prompt = build_prompt(question)
+        prompt = build_prompt(question, tokenizer)
 
         t0 = time.perf_counter()
         outputs = llm.generate([prompt], SAMPLING_PARAMS)

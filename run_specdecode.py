@@ -2,7 +2,7 @@
 run_specdecode.py
 Speculative decoding via vLLM's native draft-model method.
   Target: Qwen/Qwen3-32B  (TP=4)
-  Draft:  Qwen/Qwen3-2B   (draft_tensor_parallel_size=1)
+  Draft:  Qwen/Qwen3-1.7B (draft_tensor_parallel_size=4)
   num_speculative_tokens=5
 Hardware: 4x A100 40GB, Perlmutter
 
@@ -111,15 +111,17 @@ class SpecDecodeAlphaTracker:
 
 
 # ---------------------------------------------------------------------------
+from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 
 # Config
 # ---------------------------------------------------------------------------
 TARGET_MODEL_ID = "Qwen/Qwen3-32B"
-DRAFT_MODEL_ID  = "Qwen/Qwen3-2B"
+DRAFT_MODEL_ID  = "Qwen/Qwen3-1.7B"
 NUM_SPEC_TOKENS = 5
 DATASET_PATH    = "mathvision_mini.json"
-RESULTS_PATH    = "results/run_specdecode_results.json"
+RESULTS_DIR     = os.environ.get("RESULTS_DIR", "results")
+RESULTS_PATH    = f"{RESULTS_DIR}/run_specdecode_results.json"
 SYSTEM_PREFIX   = "Please reason step by step, and put your final answer within \\boxed{}."
 
 SAMPLING_PARAMS = SamplingParams(
@@ -138,12 +140,21 @@ def load_dataset(path: str) -> list[dict]:
         return json.load(f)
 
 
-def build_prompt(question: str) -> str:
-    return f"{SYSTEM_PREFIX}\n\n{question}"
+def build_prompt(question: str, tokenizer: AutoTokenizer) -> str:
+    messages = [
+        {"role": "system", "content": SYSTEM_PREFIX},
+        {"role": "user",   "content": question},
+    ]
+    return tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
+        enable_thinking=True,
+    )
 
 
 def main():
-    os.makedirs("results", exist_ok=True)
+    os.makedirs(RESULTS_DIR, exist_ok=True)
 
     # Install tracker before LLM creation so the class-level patch is in place
     # when LoggingStatLogger instantiates SpecDecodingLogging inside LLM.__init__.
@@ -152,17 +163,19 @@ def main():
     print(f"Loading target model: {TARGET_MODEL_ID}")
     print(f"Draft model:          {DRAFT_MODEL_ID}  (num_spec_tokens={NUM_SPEC_TOKENS})")
 
+    tokenizer = AutoTokenizer.from_pretrained(TARGET_MODEL_ID)
     llm = LLM(
         model=TARGET_MODEL_ID,
         tensor_parallel_size=4,
         dtype="bfloat16",
         trust_remote_code=True,
+        gpu_memory_utilization=0.7,
         disable_log_stats=False,   # enable stat pipeline so observe() is called
         speculative_config={
             "method": "draft_model",
             "model": DRAFT_MODEL_ID,
             "num_speculative_tokens": NUM_SPEC_TOKENS,
-            "draft_tensor_parallel_size": 1,
+            "draft_tensor_parallel_size": 4,
         },
     )
 
@@ -174,7 +187,7 @@ def main():
     for idx, item in enumerate(dataset):
         question = item["question"]
         answer   = item.get("answer", "")
-        prompt   = build_prompt(question)
+        prompt   = build_prompt(question, tokenizer)
 
         tracker.reset()                           # start fresh α window for this Q
         t0 = time.perf_counter()

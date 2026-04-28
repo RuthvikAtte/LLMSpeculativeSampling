@@ -1,0 +1,518 @@
+Fri Apr 24 06:34:46 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A40                     On  |   00000000:07:00.0 Off |                    0 |
+|  0%   28C    P8             21W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A40                     On  |   00000000:46:00.0 Off |                    0 |
+|  0%   38C    P8             22W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A40                     On  |   00000000:85:00.0 Off |                    0 |
+|  0%   28C    P8             21W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A40                     On  |   00000000:C7:00.0 Off |                    0 |
+|  0%   28C    P8             21W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking model weights...
+Model weights found.
+All pre-flight checks passed.
+=== Script 1: 32B standalone (baseline) — already done, skipping ===
+=== Script 2: 2B standalone (draft ceiling) — already done, skipping ===
+=== Script 3: Speculative decoding (32B+2B) ===
+DEBUG 04-24 06:34:59 [plugins/__init__.py:36] No plugins for group vllm.platform_plugins found.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:37] Checking if TPU platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:56] TPU platform is not available because: No module named 'libtpu'
+DEBUG 04-24 06:34:59 [platforms/__init__.py:62] Checking if CUDA platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:85] Confirmed CUDA platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:113] Checking if ROCm platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:127] ROCm platform is not available because: No module named 'amdsmi'
+DEBUG 04-24 06:34:59 [platforms/__init__.py:134] Checking if XPU platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:165] Checking if CPU platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:62] Checking if CUDA platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:85] Confirmed CUDA platform is available.
+DEBUG 04-24 06:34:59 [platforms/__init__.py:247] Automatically detected platform cuda.
+Loading target model: Qwen/Qwen3-32B
+Draft model:          Qwen/Qwen3-2B  (num_spec_tokens=5)
+DEBUG 04-24 06:35:19 [plugins/__init__.py:44] Available plugins for group vllm.general_plugins:
+DEBUG 04-24 06:35:19 [plugins/__init__.py:46] - lora_filesystem_resolver -> vllm.plugins.lora_resolvers.filesystem_resolver:register_filesystem_resolver
+DEBUG 04-24 06:35:19 [plugins/__init__.py:46] - lora_hf_hub_resolver -> vllm.plugins.lora_resolvers.hf_hub_resolver:register_hf_hub_resolver
+DEBUG 04-24 06:35:19 [plugins/__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 04-24 06:35:19 [engine/arg_utils.py:665] HF_HUB_OFFLINE is True, replace model_id [Qwen/Qwen3-32B] to model_path [/scratch/bgum/ratte/specreason_models/hub/models--Qwen--Qwen3-32B/snapshots/9216db5781bf21249d130ec9da846c4624c16137]
+INFO 04-24 06:35:19 [entrypoints/utils.py:233] non-default args: {'trust_remote_code': True, 'dtype': 'bfloat16', 'tensor_parallel_size': 4, 'gpu_memory_utilization': 0.7, 'speculative_config': {'method': 'draft_model', 'model': 'Qwen/Qwen3-2B', 'num_speculative_tokens': 5, 'draft_tensor_parallel_size': 1}, 'model': '/scratch/bgum/ratte/specreason_models/hub/models--Qwen--Qwen3-32B/snapshots/9216db5781bf21249d130ec9da846c4624c16137'}
+DEBUG 04-24 06:35:19 [model_executor/models/registry.py:827] Loaded model info for class vllm.model_executor.models.qwen3.Qwen3ForCausalLM from cache
+DEBUG 04-24 06:35:19 [logging_utils/log_time.py:29] Registry inspect model class: Elapsed time 0.0051893 secs
+INFO 04-24 06:35:19 [config/model.py:549] Resolved architecture: Qwen3ForCausalLM
+INFO 04-24 06:35:19 [config/model.py:1678] Using max model len 40960
+DEBUG 04-24 06:35:19 [config/model.py:1743] Generative models support chunked prefill.
+DEBUG 04-24 06:35:19 [config/model.py:1801] Generative models support prefix caching.
+DEBUG 04-24 06:35:19 [engine/arg_utils.py:2116] Enabling chunked prefill by default
+DEBUG 04-24 06:35:19 [engine/arg_utils.py:2146] Enabling prefix caching by default
+DEBUG 04-24 06:35:19 [engine/arg_utils.py:2232] Defaulting max_num_batched_tokens to 8192 for LLM_CLASS usage context.
+DEBUG 04-24 06:35:19 [engine/arg_utils.py:2242] Defaulting max_num_seqs to 256 for LLM_CLASS usage context.
+DEBUG 04-24 06:35:19 [config/parallel.py:743] Defaulting to use mp for distributed inference
+DEBUG 04-24 06:35:19 [transformers_utils/config.py:782] Overriding HF config with <function SpeculativeConfig.hf_config_override at 0x7fdec70b5580>
+DEBUG 04-24 06:35:19 [model_executor/models/registry.py:827] Loaded model info for class vllm.model_executor.models.qwen3_5_mtp.Qwen3_5MTP from cache
+DEBUG 04-24 06:35:19 [logging_utils/log_time.py:29] Registry inspect model class: Elapsed time 0.0035637 secs
+INFO 04-24 06:35:19 [config/model.py:549] Resolved architecture: Qwen3_5MTP
+INFO 04-24 06:35:19 [config/model.py:1678] Using max model len 262144
+WARNING 04-24 06:35:19 [config/speculative.py:512] Enabling num_speculative_tokens > 1 will run multiple times of forward on same MTP layer,which may result in lower acceptance rate
+INFO 04-24 06:35:19 [config/scheduler.py:238] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 04-24 06:35:19 [config/vllm.py:790] Asynchronous scheduling is enabled.
+DEBUG 04-24 06:35:21 [v1/engine/llm_engine.py:173] Enabling multiprocessing for LLMEngine.
+DEBUG 04-24 06:35:21 [tokenizers/registry.py:77] Loading CachedHfTokenizer for tokenizer_mode='hf'
+DEBUG 04-24 06:35:22 [renderers/registry.py:57] Loading HfRenderer for renderer_mode='hf'
+DEBUG 04-24 06:35:22 [plugins/io_processors/__init__.py:36] No IOProcessor plugins requested by the model
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [v1/engine/core.py:1018] Waiting for init message from front-end.
+DEBUG 04-24 06:35:22 [v1/engine/utils.py:1158] HELLO from local core engine process 0.
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [v1/engine/core.py:1029] Received init message: EngineHandshakeMetadata(addresses=EngineZmqAddresses(inputs=['ipc:///tmp/ca346ed8-c456-473c-9be2-72f2b34aaacc'], outputs=['ipc:///tmp/2edb4568-ec14-4f77-91df-aae81510b73b'], coordinator_input=None, coordinator_output=None, frontend_stats_publish_address=None), parallel_config={})
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [v1/engine/core.py:826] Has DP Coordinator: False, stats publish address: None
+(EngineCore pid=3391222) INFO 04-24 06:35:22 [v1/engine/core.py:105] Initializing a V1 LLM engine (v0.19.1) with config: model='/scratch/bgum/ratte/specreason_models/hub/models--Qwen--Qwen3-32B/snapshots/9216db5781bf21249d130ec9da846c4624c16137', speculative_config=SpeculativeConfig(method='mtp', model='Qwen/Qwen3-2B', num_spec_tokens=5), tokenizer='/scratch/bgum/ratte/specreason_models/hub/models--Qwen--Qwen3-32B/snapshots/9216db5781bf21249d130ec9da846c4624c16137', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=40960, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=0, served_model_name=/scratch/bgum/ratte/specreason_models/hub/models--Qwen--Qwen3-32B/snapshots/9216db5781bf21249d130ec9da846c4624c16137, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_images_per_batch': 0, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': True, 'alignment_asserts': True, 'scalar_asserts': True, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}
+(EngineCore pid=3391222) WARNING 04-24 06:35:22 [v1/executor/multiproc_executor.py:1014] Reducing Torch parallelism from 16 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+(EngineCore pid=3391222) INFO 04-24 06:35:22 [v1/executor/multiproc_executor.py:134] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=141.142.254.151 (local), world_size=4, local_world_size=4
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [distributed/device_communicators/shm_broadcast.py:390] Binding to ipc:///tmp/6372d47b-6527-48f4-b3c3-67aac04b49b9
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [distributed/device_communicators/shm_broadcast.py:443] vLLM message queue communication handle: Handle(local_reader_ranks=[0, 1, 2, 3], buffer_handle=(4, 16777216, 10, 'psm_95cca8ef'), local_subscribe_addr='ipc:///tmp/6372d47b-6527-48f4-b3c3-67aac04b49b9', local_notify_addr='ipc:///tmp/4f7a34d9-fbff-4c1c-a3d7-e73398a2606b', remote_subscribe_addr=None, remote_addr_ipv6=False)
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [utils/import_utils.py:74] Loading module triton_kernels from /u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/third_party/triton_kernels/__init__.py.
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [utils/import_utils.py:74] Loading module triton_kernels from /u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/third_party/triton_kernels/__init__.py.
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [utils/import_utils.py:74] Loading module triton_kernels from /u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/third_party/triton_kernels/__init__.py.
+(EngineCore pid=3391222) DEBUG 04-24 06:35:22 [utils/import_utils.py:74] Loading module triton_kernels from /u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/third_party/triton_kernels/__init__.py.
+(Worker pid=3391228) DEBUG 04-24 06:35:24 [distributed/parallel_state.py:1356] world_size=4 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+(Worker pid=3391228) INFO 04-24 06:35:24 [distributed/parallel_state.py:1400] world_size=4 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+(Worker pid=3391230) DEBUG 04-24 06:35:25 [distributed/parallel_state.py:1356] world_size=4 rank=2 local_rank=2 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+(Worker pid=3391231) DEBUG 04-24 06:35:25 [distributed/parallel_state.py:1356] world_size=4 rank=3 local_rank=3 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+(Worker pid=3391229) DEBUG 04-24 06:35:25 [distributed/parallel_state.py:1356] world_size=4 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+(Worker pid=3391231) INFO 04-24 06:35:25 [distributed/parallel_state.py:1400] world_size=4 rank=3 local_rank=3 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+(Worker pid=3391230) INFO 04-24 06:35:25 [distributed/parallel_state.py:1400] world_size=4 rank=2 local_rank=2 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+(Worker pid=3391229) INFO 04-24 06:35:25 [distributed/parallel_state.py:1400] world_size=4 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:54947 backend=nccl
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+(Worker pid=3391228) DEBUG 04-24 06:35:25 [distributed/parallel_state.py:1459] Detected 1 nodes in the distributed environment
+(Worker pid=3391231) DEBUG 04-24 06:35:25 [distributed/parallel_state.py:1459] Detected 1 nodes in the distributed environment
+(Worker pid=3391230) DEBUG 04-24 06:35:25 [distributed/parallel_state.py:1459] Detected 1 nodes in the distributed environment
+(Worker pid=3391229) DEBUG 04-24 06:35:25 [distributed/parallel_state.py:1459] Detected 1 nodes in the distributed environment
+[Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 3 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+[Gloo] Rank 2 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [utils/nccl.py:34] Found nccl from library libnccl.so.2
+(Worker pid=3391228) INFO 04-24 06:35:27 [distributed/device_communicators/pynccl.py:111] vLLM is using nccl==2.27.5
+(Worker pid=3391228) WARNING 04-24 06:35:27 [distributed/device_communicators/symm_mem.py:66] SymmMemCommunicator: Device capability 8.6 not supported, communicator is not available.
+(Worker pid=3391231) WARNING 04-24 06:35:27 [distributed/device_communicators/symm_mem.py:66] SymmMemCommunicator: Device capability 8.6 not supported, communicator is not available.
+(Worker pid=3391230) WARNING 04-24 06:35:27 [distributed/device_communicators/symm_mem.py:66] SymmMemCommunicator: Device capability 8.6 not supported, communicator is not available.
+(Worker pid=3391229) WARNING 04-24 06:35:27 [distributed/device_communicators/symm_mem.py:66] SymmMemCommunicator: Device capability 8.6 not supported, communicator is not available.
+(Worker pid=3391228) WARNING 04-24 06:35:27 [distributed/device_communicators/custom_all_reduce.py:154] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=3391231) WARNING 04-24 06:35:27 [distributed/device_communicators/custom_all_reduce.py:154] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=3391229) WARNING 04-24 06:35:27 [distributed/device_communicators/custom_all_reduce.py:154] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=3391230) WARNING 04-24 06:35:27 [distributed/device_communicators/custom_all_reduce.py:154] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [distributed/device_communicators/shm_broadcast.py:390] Binding to ipc:///tmp/6aadc7be-631c-4e55-a8d5-946425b6c4c1
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [distributed/device_communicators/shm_broadcast.py:443] vLLM message queue communication handle: Handle(local_reader_ranks=[1, 2, 3], buffer_handle=(3, 4194304, 6, 'psm_862f9241'), local_subscribe_addr='ipc:///tmp/6aadc7be-631c-4e55-a8d5-946425b6c4c1', local_notify_addr='ipc:///tmp/c42fb761-bc74-4e69-9425-01ec04b4994e', remote_subscribe_addr=None, remote_addr_ipv6=False)
+(Worker pid=3391231) DEBUG 04-24 06:35:27 [distributed/device_communicators/shm_broadcast.py:467] Connecting to ipc:///tmp/6aadc7be-631c-4e55-a8d5-946425b6c4c1
+(Worker pid=3391229) DEBUG 04-24 06:35:27 [distributed/device_communicators/shm_broadcast.py:467] Connecting to ipc:///tmp/6aadc7be-631c-4e55-a8d5-946425b6c4c1
+(Worker pid=3391230) DEBUG 04-24 06:35:27 [distributed/device_communicators/shm_broadcast.py:467] Connecting to ipc:///tmp/6aadc7be-631c-4e55-a8d5-946425b6c4c1
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+(Worker pid=3391228) INFO 04-24 06:35:27 [distributed/parallel_state.py:1716] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(Worker pid=3391231) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:284] worker init memory snapshot: torch_peak=0.0GiB, free_memory=44.02GiB, total_memory=44.43GiB, cuda_memory=0.41GiB, torch_memory=0.0GiB, non_torch_memory=0.41GiB, timestamp=1777030527.8083103, auto_measure=True
+(Worker pid=3391231) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:285] worker requested memory: 31.1GiB
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:284] worker init memory snapshot: torch_peak=0.0GiB, free_memory=44.02GiB, total_memory=44.43GiB, cuda_memory=0.41GiB, torch_memory=0.0GiB, non_torch_memory=0.41GiB, timestamp=1777030527.8236263, auto_measure=True
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:285] worker requested memory: 31.1GiB
+(Worker pid=3391229) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:284] worker init memory snapshot: torch_peak=0.0GiB, free_memory=44.02GiB, total_memory=44.43GiB, cuda_memory=0.41GiB, torch_memory=0.0GiB, non_torch_memory=0.41GiB, timestamp=1777030527.8312678, auto_measure=True
+(Worker pid=3391229) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:285] worker requested memory: 31.1GiB
+(Worker pid=3391230) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:284] worker init memory snapshot: torch_peak=0.0GiB, free_memory=44.02GiB, total_memory=44.43GiB, cuda_memory=0.41GiB, torch_memory=0.0GiB, non_torch_memory=0.41GiB, timestamp=1777030527.8404374, auto_measure=True
+(Worker pid=3391230) DEBUG 04-24 06:35:27 [v1/worker/gpu_worker.py:285] worker requested memory: 31.1GiB
+(Worker pid=3391231) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_v2.DeepseekV2Model'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_v2.DeepseekV2Model'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391229) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_v2.DeepseekV2Model'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391230) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_v2.DeepseekV2Model'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391231) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_eagle3.DeepseekV2Eagle3Model'>: ['input_ids', 'positions', 'hidden_states', 'input_embeds']
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_eagle3.DeepseekV2Eagle3Model'>: ['input_ids', 'positions', 'hidden_states', 'input_embeds']
+(Worker pid=3391229) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_eagle3.DeepseekV2Eagle3Model'>: ['input_ids', 'positions', 'hidden_states', 'input_embeds']
+(Worker pid=3391230) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.deepseek_eagle3.DeepseekV2Eagle3Model'>: ['input_ids', 'positions', 'hidden_states', 'input_embeds']
+(Worker pid=3391230) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.llama.LlamaModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391228) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.llama.LlamaModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391231) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.llama.LlamaModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391229) DEBUG 04-24 06:35:27 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.llama.LlamaModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker pid=3391228) DEBUG 04-24 06:35:28 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.v1.spec_decode.ngram_proposer_gpu.NgramGPUKernel'>: ['num_tokens_no_spec', 'token_ids_gpu', 'combined_mask']
+(Worker pid=3391229) DEBUG 04-24 06:35:28 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.v1.spec_decode.ngram_proposer_gpu.NgramGPUKernel'>: ['num_tokens_no_spec', 'token_ids_gpu', 'combined_mask']
+(Worker pid=3391231) DEBUG 04-24 06:35:28 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.v1.spec_decode.ngram_proposer_gpu.NgramGPUKernel'>: ['num_tokens_no_spec', 'token_ids_gpu', 'combined_mask']
+(Worker pid=3391230) DEBUG 04-24 06:35:28 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.v1.spec_decode.ngram_proposer_gpu.NgramGPUKernel'>: ['num_tokens_no_spec', 'token_ids_gpu', 'combined_mask']
+(Worker pid=3391228) DEBUG 04-24 06:35:28 [v1/sample/ops/topk_topp_sampler.py:57] FlashInfer top-p/top-k sampling is available but disabled by default. Set VLLM_USE_FLASHINFER_SAMPLER=1 to opt in after verifying accuracy for your workloads.
+(Worker pid=3391231) WARNING 04-24 06:35:28 [v1/sample/logits_processor/__init__.py:206] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker pid=3391230) WARNING 04-24 06:35:28 [v1/sample/logits_processor/__init__.py:206] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker pid=3391228) WARNING 04-24 06:35:28 [v1/sample/logits_processor/__init__.py:206] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker pid=3391229) WARNING 04-24 06:35:28 [v1/sample/logits_processor/__init__.py:206] min_p and logit_bias parameters won't work with speculative decoding.
+(Worker pid=3391228) DEBUG 04-24 06:35:28 [model_executor/offloader/base.py:107] Offloader set to NoopOffloader (no offloading).
+(Worker_TP0 pid=3391228) INFO 04-24 06:35:28 [v1/worker/gpu_model_runner.py:4735] Starting to load model /scratch/bgum/ratte/specreason_models/hub/models--Qwen--Qwen3-32B/snapshots/9216db5781bf21249d130ec9da846c4624c16137...
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:35:28 [platforms/cuda.py:293] Some attention backends are not valid for cuda with AttentionSelectorConfig(head_size=128, dtype=torch.bfloat16, kv_cache_dtype=auto, block_size=None, use_mla=False, has_sink=False, use_sparse=False, use_mm_prefix=False, use_per_head_quant_scales=False, attn_type=AttentionType.DECODER). Reasons: {}.
+(Worker_TP0 pid=3391228) INFO 04-24 06:35:28 [platforms/cuda.py:334] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(Worker_TP0 pid=3391228) INFO 04-24 06:35:28 [v1/attention/backends/flash_attn.py:596] Using FlashAttention version 2
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:35:28 [compilation/backends.py:101] Using InductorStandaloneAdaptor
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:35:28 [config/compilation.py:1197] enabled custom ops: Counter()
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:35:28 [config/compilation.py:1198] disabled custom ops: Counter({'rms_norm': 257, 'silu_and_mul': 64, 'vocab_parallel_embedding': 1, 'rotary_embedding': 1, 'apply_rotary_emb': 1, 'parallel_lm_head': 1, 'logits_processor': 1})
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:35:28 [config/compilation.py:1197] enabled custom ops: Counter()
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:35:28 [config/compilation.py:1197] enabled custom ops: Counter()
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:35:28 [config/compilation.py:1198] disabled custom ops: Counter({'rms_norm': 257, 'silu_and_mul': 64, 'vocab_parallel_embedding': 1, 'rotary_embedding': 1, 'apply_rotary_emb': 1, 'parallel_lm_head': 1, 'logits_processor': 1})
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:35:28 [config/compilation.py:1198] disabled custom ops: Counter({'rms_norm': 257, 'silu_and_mul': 64, 'vocab_parallel_embedding': 1, 'rotary_embedding': 1, 'apply_rotary_emb': 1, 'parallel_lm_head': 1, 'logits_processor': 1})
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:35:28 [model_executor/model_loader/base_loader.py:63] Loading weights on cuda ...
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:35:28 [config/compilation.py:1197] enabled custom ops: Counter()
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:35:28 [model_executor/model_loader/base_loader.py:63] Loading weights on cuda ...
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:35:28 [model_executor/model_loader/base_loader.py:63] Loading weights on cuda ...
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:35:29 [config/compilation.py:1198] disabled custom ops: Counter({'rms_norm': 257, 'silu_and_mul': 64, 'vocab_parallel_embedding': 1, 'rotary_embedding': 1, 'apply_rotary_emb': 1, 'parallel_lm_head': 1, 'logits_processor': 1})
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:35:29 [model_executor/model_loader/base_loader.py:63] Loading weights on cuda ...
+DEBUG 04-24 06:35:32 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:35:42 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:35:52 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:36:02 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:36:12 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:36:22 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:36:32 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:36:42 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:36:52 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:37:02 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:37:12 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:37:22 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:37:32 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:37:42 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:37:52 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:38:02 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:38:12 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:38:22 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:38:32 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:38:42 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:38:52 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:39:02 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:39:12 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:39:22 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:39:32 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:39:42 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:39:52 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:40:02 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:40:12 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:40:22 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+DEBUG 04-24 06:40:32 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:40:40 [model_executor/models/utils.py:227] Loaded weight lm_head.weight with shape torch.Size([37984, 5120])
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:40:41 [model_executor/models/utils.py:227] Loaded weight lm_head.weight with shape torch.Size([37984, 5120])
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:40:41 [model_executor/models/utils.py:227] Loaded weight lm_head.weight with shape torch.Size([37984, 5120])
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:40:42 [model_executor/models/utils.py:227] Loaded weight lm_head.weight with shape torch.Size([37984, 5120])
+DEBUG 04-24 06:40:42 [v1/engine/utils.py:1047] Waiting for 1 local, 0 remote core engine proc(s) to start.
+(Worker_TP0 pid=3391228) INFO 04-24 06:40:45 [model_executor/model_loader/default_loader.py:384] Loading weights took 316.23 seconds
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:40:45 [model_executor/model_loader/base_loader.py:70] Peak GPU memory after loading weights: 15.54 GiB
+(Worker_TP0 pid=3391228) INFO 04-24 06:40:45 [v1/worker/gpu_model_runner.py:4759] Loading drafter model...
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen2_moe.Qwen2MoeModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen2_moe.Qwen2MoeModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen2_moe.Qwen2MoeModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen2_moe.Qwen2MoeModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP0 pid=3391228) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen3_next.Qwen3NextModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP2 pid=3391230) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen3_next.Qwen3NextModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP3 pid=3391231) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen3_next.Qwen3NextModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP1 pid=3391229) DEBUG 04-24 06:40:45 [compilation/decorators.py:215] Inferred dynamic dimensions for forward method of <class 'vllm.model_executor.models.qwen3_next.Qwen3NextModel'>: ['input_ids', 'positions', 'intermediate_tensors', 'inputs_embeds']
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] WorkerProc failed to start.
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] Traceback (most recent call last):
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 826, in worker_main
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     worker = WorkerProc(*args, **kwargs)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 613, in __init__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.worker.load_model()
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 323, in load_model
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 4760, in load_model
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.drafter.load_model(self.model)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1254, in load_model
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = self._get_model()
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1239, in _get_model
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = get_model(
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/__init__.py", line 138, in get_model
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return loader.load_model(
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/base_loader.py", line 55, in load_model
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = initialize_model(
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/utils.py", line 57, in initialize_model
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = model_class(vllm_config=vllm_config, prefix=prefix)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 359, in __init__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = Qwen3_5MultiTokenPredictor(
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 88, in __init__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.layers = torch.nn.ModuleList(
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                   ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 364, in __init__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self += modules
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 413, in __iadd__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return self.extend(modules)
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 498, in extend
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     for i, module in enumerate(modules):
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                      ^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 89, in <genexpr>
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     Qwen3_5DecoderLayer(
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py", line 170, in __init__
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     raise ValueError(f"Invalid model_type {config.model_type}")
+(Worker_TP3 pid=3391231) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] ValueError: Invalid model_type qwen3
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] WorkerProc failed to start.
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] Traceback (most recent call last):
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 826, in worker_main
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     worker = WorkerProc(*args, **kwargs)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 613, in __init__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.worker.load_model()
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 323, in load_model
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 4760, in load_model
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.drafter.load_model(self.model)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1254, in load_model
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = self._get_model()
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1239, in _get_model
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = get_model(
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/__init__.py", line 138, in get_model
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return loader.load_model(
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/base_loader.py", line 55, in load_model
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = initialize_model(
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/utils.py", line 57, in initialize_model
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = model_class(vllm_config=vllm_config, prefix=prefix)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 359, in __init__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = Qwen3_5MultiTokenPredictor(
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 88, in __init__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.layers = torch.nn.ModuleList(
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                   ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 364, in __init__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self += modules
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 413, in __iadd__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return self.extend(modules)
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 498, in extend
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     for i, module in enumerate(modules):
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                      ^^^^^^^^^^^^^^^^^^
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 89, in <genexpr>
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     Qwen3_5DecoderLayer(
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py", line 170, in __init__
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     raise ValueError(f"Invalid model_type {config.model_type}")
+(Worker_TP2 pid=3391230) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] ValueError: Invalid model_type qwen3
+(EngineCore pid=3391222) DEBUG 04-24 06:40:46 [v1/executor/multiproc_executor.py:419] Worker Termination: allow workers to gracefully shutdown
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] WorkerProc failed to start.
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] Traceback (most recent call last):
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 826, in worker_main
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     worker = WorkerProc(*args, **kwargs)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 613, in __init__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.worker.load_model()
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 323, in load_model
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 4760, in load_model
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.drafter.load_model(self.model)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1254, in load_model
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = self._get_model()
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1239, in _get_model
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = get_model(
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/__init__.py", line 138, in get_model
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return loader.load_model(
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/base_loader.py", line 55, in load_model
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = initialize_model(
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/utils.py", line 57, in initialize_model
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = model_class(vllm_config=vllm_config, prefix=prefix)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 359, in __init__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = Qwen3_5MultiTokenPredictor(
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 88, in __init__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.layers = torch.nn.ModuleList(
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                   ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 364, in __init__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self += modules
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 413, in __iadd__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return self.extend(modules)
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 498, in extend
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     for i, module in enumerate(modules):
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                      ^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 89, in <genexpr>
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     Qwen3_5DecoderLayer(
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py", line 170, in __init__
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     raise ValueError(f"Invalid model_type {config.model_type}")
+(Worker_TP0 pid=3391228) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] ValueError: Invalid model_type qwen3
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] WorkerProc failed to start.
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] Traceback (most recent call last):
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 826, in worker_main
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     worker = WorkerProc(*args, **kwargs)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 613, in __init__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.worker.load_model()
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 323, in load_model
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py", line 4760, in load_model
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.drafter.load_model(self.model)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1254, in load_model
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = self._get_model()
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/spec_decode/eagle.py", line 1239, in _get_model
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = get_model(
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/__init__.py", line 138, in get_model
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return loader.load_model(
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/base_loader.py", line 55, in load_model
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = initialize_model(
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return func(*args, **kwargs)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/model_loader/utils.py", line 57, in initialize_model
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     model = model_class(vllm_config=vllm_config, prefix=prefix)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 359, in __init__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.model = Qwen3_5MultiTokenPredictor(
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/compilation/decorators.py", line 379, in __init__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     old_init(self, *args, **kwargs)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 88, in __init__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self.layers = torch.nn.ModuleList(
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                   ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 364, in __init__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     self += modules
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 413, in __iadd__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     return self.extend(modules)
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/torch/nn/modules/container.py", line 498, in extend
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     for i, module in enumerate(modules):
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]                      ^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5_mtp.py", line 89, in <genexpr>
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     Qwen3_5DecoderLayer(
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py", line 170, in __init__
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857]     raise ValueError(f"Invalid model_type {config.model_type}")
+(Worker_TP1 pid=3391229) ERROR 04-24 06:40:46 [v1/executor/multiproc_executor.py:857] ValueError: Invalid model_type qwen3
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108] EngineCore failed to start.
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108] Traceback (most recent call last):
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1082, in run_engine_core
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     return func(*args, **kwargs)
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 848, in __init__
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     super().__init__(
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 114, in __init__
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 101, in __init__
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     super().__init__(vllm_config)
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     return func(*args, **kwargs)
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 103, in __init__
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     self._init_executor()
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 190, in _init_executor
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     self.workers = WorkerProc.wait_for_ready(unready_workers)
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]   File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 736, in wait_for_ready
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108]     raise e from None
+(EngineCore pid=3391222) ERROR 04-24 06:40:46 [v1/engine/core.py:1108] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
