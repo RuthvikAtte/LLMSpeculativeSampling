@@ -19,7 +19,6 @@ WORK_DIR="/u/ratte/LLMSpeculativeSampling"
 MODEL_CACHE_DIR="/scratch/bgum/ratte/specreason_models"
 # Allow resuming a previous run by passing RESULTS_DIR from outside, e.g.:
 #   RESULTS_DIR=/path/to/existing sbatch job_experiment.sh
-# If not set, a new timestamped directory is created.
 RESULTS_DIR="${RESULTS_DIR:-$WORK_DIR/results_$(date +%Y%m%d_%H%M%S)}"
 export RESULTS_DIR
 
@@ -40,21 +39,22 @@ export HF_HUB_OFFLINE=1
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 export TOKENIZERS_PARALLELISM=false
-export VLLM_LOGGING_LEVEL=DEBUG
 export VLLM_WORKER_MULTIPROC_METHOD=fork
+
+VLLM_SERVER_PORT=8000
+export VLLM_SERVER_URL="http://localhost:${VLLM_SERVER_PORT}/v1"
+export VLLM_SERVER_BASE="http://localhost:${VLLM_SERVER_PORT}"
 
 nvidia-smi
 
 # ── Pre-flight checks ─────────────────────────────────────────────────────────
-
-# 1. Verify model weights are cached
 echo "Checking model weights..."
-python - <<'EOF'
+python3 - <<'EOF'
 from huggingface_hub import try_to_load_from_cache
 import sys
 models = [
-    ("Qwen/Qwen3-32B", "config.json"),
-    ("Qwen/Qwen3-2B",  "config.json"),
+    ("Qwen/Qwen3-32B",  "config.json"),
+    ("Qwen/Qwen3-1.7B", "config.json"),
 ]
 missing = []
 for repo, filename in models:
@@ -72,21 +72,76 @@ EOF
 
 echo "All pre-flight checks passed."
 
-# ── Run experiment ────────────────────────────────────────────────────────────
-run_if_missing() {
-    local result_file="$1"
-    local label="$2"
-    shift 2
-    if [ -f "$RESULTS_DIR/$result_file" ]; then
-        echo "=== $label — already done, skipping ==="
-    else
-        echo "=== $label ==="
-        "$@"
+# ── Server management ─────────────────────────────────────────────────────────
+SERVER_PID=""
+
+start_server() {
+    local label="$1"; shift
+    local log="$RESULTS_DIR/vllm_server_${label}.log"
+    echo "=== Starting vLLM server: $label ==="
+    vllm serve "$@" \
+        --host 0.0.0.0 \
+        --port "$VLLM_SERVER_PORT" \
+        --dtype bfloat16 \
+        --trust-remote-code \
+        --tensor-parallel-size 4 \
+        > "$log" 2>&1 &
+    SERVER_PID=$!
+    echo "Server PID=$SERVER_PID — waiting for health..."
+    until curl -sf "http://localhost:${VLLM_SERVER_PORT}/health" > /dev/null; do
+        sleep 5
+        if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+            echo "ERROR: vLLM server died during startup. Check $log"
+            exit 1
+        fi
+    done
+    echo "Server ready."
+}
+
+stop_server() {
+    if [ -n "$SERVER_PID" ]; then
+        echo "Stopping vLLM server (PID=$SERVER_PID)..."
+        kill "$SERVER_PID" 2>/dev/null || true
+        wait "$SERVER_PID" 2>/dev/null || true
+        SERVER_PID=""
     fi
 }
 
-run_if_missing run_32b_standalone_results.json  "Script 1: 32B standalone (baseline)"   python3 run_32b_standalone.py
-run_if_missing run_2b_standalone_results.json   "Script 2: 2B standalone (draft ceiling)" python3 run_2b_standalone.py
-run_if_missing run_specdecode_results.json      "Script 3: Speculative decoding (32B+2B)" python3 run_specdecode.py
+# Ensure server is always stopped on exit (covers errors and normal completion)
+trap stop_server EXIT
+
+# ── Run experiments ───────────────────────────────────────────────────────────
+
+# Script 1: 32B standalone baseline
+if [ -f "$RESULTS_DIR/run_32b_standalone_results.json" ]; then
+    echo "=== Script 1: 32B standalone — already done, skipping ==="
+else
+    echo "=== Script 1: 32B standalone (baseline) ==="
+    start_server "32b" Qwen/Qwen3-32B --gpu-memory-utilization 0.90
+    python3 run_32b_standalone.py
+    stop_server
+fi
+
+# Script 2: 1.7B standalone (draft model ceiling)
+if [ -f "$RESULTS_DIR/run_2b_standalone_results.json" ]; then
+    echo "=== Script 2: 1.7B standalone — already done, skipping ==="
+else
+    echo "=== Script 2: 1.7B standalone (draft ceiling) ==="
+    start_server "1p7b" Qwen/Qwen3-1.7B --gpu-memory-utilization 0.50
+    python3 run_2b_standalone.py
+    stop_server
+fi
+
+# Script 3: Speculative decoding (32B target + 1.7B draft)
+if [ -f "$RESULTS_DIR/run_specdecode_results.json" ]; then
+    echo "=== Script 3: Speculative decoding — already done, skipping ==="
+else
+    echo "=== Script 3: Speculative decoding (32B + 1.7B draft) ==="
+    start_server "specdecode" Qwen/Qwen3-32B \
+        --gpu-memory-utilization 0.70 \
+        --speculative-config "{\"method\":\"draft_model\",\"model\":\"Qwen/Qwen3-1.7B\",\"num_speculative_tokens\":5,\"draft_tensor_parallel_size\":4}"
+    python3 run_specdecode.py
+    stop_server
+fi
 
 echo "Done. Results in $RESULTS_DIR"
