@@ -1,0 +1,93 @@
+Node layout:
+  Node1 (32B scorer):  gpub071  →  http://gpub071:8000/v1
+  Node2 (2B drafter):  gpub095  →  http://gpub095:8001/v1
+Tue Apr 28 16:56:38 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A40                     On  |   00000000:07:00.0 Off |                    0 |
+|  0%   29C    P8             28W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A40                     On  |   00000000:46:00.0 Off |                    0 |
+|  0%   27C    P8             21W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A40                     On  |   00000000:85:00.0 Off |                    0 |
+|  0%   27C    P8             21W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A40                     On  |   00000000:C7:00.0 Off |                    0 |
+|  0%   27C    P8             24W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking model weights...
+Model weights found.
+All pre-flight checks passed.
+=== SpecReason (32B scorer + 2B drafter, 2 nodes) ===
+=== Starting 32b_scorer on gpub071:8000 ===
+=== Starting 2b_drafter on gpub095:8001 ===
+Waiting for 32B scorer at http://gpub071:8000/v1...
+32B scorer ready.
+Waiting for 2B drafter at http://gpub095:8001/v1...
+2B drafter ready.
+Scorer  (32B): http://gpub071:8000/v1  model=Qwen/Qwen3-VL-32B-Thinking
+Drafter (2B):  http://gpub095:8001/v1   model=Qwen/Qwen3-VL-2B-Thinking
+score_threshold=7  max_step_tokens=512  cycle_window=5
+
+Loaded 6 questions from mathvision_vl.json
+
+[QID   5 | logic]
+  step 1: draft → EOS/think-end (456 chars)
+  → total 1 steps  accepted=1  fallback=0  cycle=0  avg_score=n/a  latency=22.4s
+
+[QID 133 | transformation geometry]
+  step 1: draft → EOS/think-end (323 chars)
+  → total 1 steps  accepted=1  fallback=0  cycle=0  avg_score=n/a  latency=38.3s
+
+[QID 123 | counting]
+  step 1: draft → EOS/think-end (223 chars)
+  → total 1 steps  accepted=1  fallback=0  cycle=0  avg_score=n/a  latency=37.7s
+
+[QID 168 | combinatorial geometry]
+  step 1: draft → EOS/think-end (744 chars)
+  → total 1 steps  accepted=1  fallback=0  cycle=0  avg_score=n/a  latency=21.8s
+
+[QID 117 | combinatorics]
+  step 1: draft → EOS/think-end (308 chars)
+  → total 1 steps  accepted=1  fallback=0  cycle=0  avg_score=n/a  latency=37.7s
+
+[QID 104 | counting]
+  step 1: draft → EOS/think-end (254 chars)
+  → total 1 steps  accepted=1  fallback=0  cycle=0  avg_score=n/a  latency=38.0s
+
+Results saved to /u/ratte/LLMSpeculativeSampling/results_vl_20260428_165632/run_specReason_results.json
+
+--- Summary Table ---
+  QID  Category                       Lat(s)  Steps    Acc   Fall   AvgScore
+------------------------------------------------------------------------
+    5  logic                           22.37      1      1      0        n/a
+  133  transformation geometry         38.32      1      1      0        n/a
+  123  counting                        37.71      1      1      0        n/a
+  168  combinatorial geometry          21.80      1      1      0        n/a
+  117  combinatorics                   37.67      1      1      0        n/a
+  104  counting                        37.99      1      1      0        n/a
+------------------------------------------------------------------------
+  ALL                                 195.86      6      6      0        n/a
+
+Overall step acceptance rate: 1.000
+Stopping vLLM servers...
+Done. Results in /u/ratte/LLMSpeculativeSampling/results_vl_20260428_165632
+Stopping vLLM servers...

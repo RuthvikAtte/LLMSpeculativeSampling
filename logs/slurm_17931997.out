@@ -1,0 +1,53 @@
+Node layout:
+  Node1 (32B scorer):  gpub010  →  http://gpub010:8000/v1
+  Node2 (2B drafter):  gpub071  →  http://gpub071:8001/v1
+Tue Apr 28 16:30:17 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A40                     On  |   00000000:07:00.0 Off |                    0 |
+|  0%   37C    P0             62W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A40                     On  |   00000000:46:00.0 Off |                    0 |
+|  0%   35C    P8             22W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A40                     On  |   00000000:85:00.0 Off |                    0 |
+|  0%   36C    P8             22W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A40                     On  |   00000000:C7:00.0 Off |                    0 |
+|  0%   34C    P8             21W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking model weights...
+Model weights found.
+All pre-flight checks passed.
+=== SpecReason (32B scorer + 2B drafter, 2 nodes) ===
+=== Starting 32b_scorer on gpub010:8000 ===
+=== Starting 2b_drafter on gpub071:8001 ===
+Waiting for 32B scorer at http://gpub010:8000/v1...
+32B scorer ready.
+Waiting for 2B drafter at http://gpub071:8001/v1...
+2B drafter ready.
+Scorer  (32B): http://gpub010:8000/v1  model=Qwen/Qwen3-VL-32B-Thinking
+Drafter (2B):  http://gpub071:8001/v1   model=Qwen/Qwen3-VL-2B-Thinking
+score_threshold=7  max_step_tokens=512  cycle_window=5
+
+Loaded 6 questions from mathvision_vl.json
+
+[QID   5 | logic]
+Stopping vLLM servers...

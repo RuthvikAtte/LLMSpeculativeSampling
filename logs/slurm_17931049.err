@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/u/ratte/LLMSpeculativeSampling/run_specReason.py", line 365, in <module>
+    main()
+  File "/u/ratte/LLMSpeculativeSampling/run_specReason.py", line 315, in main
+    result = run_specReason_question(client_32b, client_2b, item)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/LLMSpeculativeSampling/run_specReason.py", line 193, in run_specReason_question
+    draft_text, finish_reason = _generate_step(
+                                ^^^^^^^^^^^^^^^
+  File "/u/ratte/LLMSpeculativeSampling/run_specReason.py", line 76, in _generate_step
+    response = client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: openai.resources.chat.completions.completions.Completions.create() got multiple values for keyword argument 'extra_body'

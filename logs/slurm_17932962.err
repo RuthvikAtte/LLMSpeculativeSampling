@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/u/ratte/LLMSpeculativeSampling/run_specReason.py", line 368, in <module>
+    main()
+  File "/u/ratte/LLMSpeculativeSampling/run_specReason.py", line 318, in main
+    result = run_specReason_question(client_32b, client_2b, item)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/LLMSpeculativeSampling/run_specReason.py", line 271, in run_specReason_question
+    f"avg_score={avg_score:.2f if avg_score else 'n/a'}  "
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
