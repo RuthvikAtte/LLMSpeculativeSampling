@@ -1,0 +1,27 @@
+WARNING: Error parsing requirements for torchaudio: [Errno 2] No such file or directory: '/home/ruthvik/.local/lib/python3.10/site-packages/torchaudio-2.10.0.dist-info/METADATA'
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+    WARNING: No metadata found in /home/ruthvik/.local/lib/python3.10/site-packages
+ERROR: Could not install packages due to an OSError: [Errno 2] No such file or directory: '/home/ruthvik/.local/lib/python3.10/site-packages/__pycache__/_cuda_bindings_redirector.cpython-310.pyc'
+

@@ -1,0 +1,57 @@
+/home/ruthvik/.local/lib/python3.10/site-packages/huggingface_hub/commands/download.py:141: FutureWarning: Ignoring --local-dir-use-symlinks. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+[33m⚠️  Warning: 'huggingface-cli download' is deprecated. Use 'hf download' instead.[0m
+Fetching 26 files:   0%|          | 0/26 [00:00<?, ?it/s]Downloading 'model-00002-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/0d90401d675a964bc7e17fd7815da56086ba2f766668d980403f38fde6030ce3.incomplete'
+Downloading 'chat_template.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/c38d0b5042ce3bedefa1e8e98906bd723080e34c.incomplete'
+Downloading 'README.md' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/17c9f4bc880a2f9e3986704ab2fc44f8e97dc181.incomplete'
+Downloading '.gitattributes' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b.incomplete'
+Downloading 'model-00001-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/b8323dbc037435e17830b803a54ba515d7f6ef773384816a69a34e5e286dd3fb.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/c38d0b5042ce3bedefa1e8e98906bd723080e34c
+Downloading 'config.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/29e925092dee9f14278c53e7e7d876cea8a997bc.incomplete'
+Downloading 'merges.txt' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/17c9f4bc880a2f9e3986704ab2fc44f8e97dc181
+Fetching 26 files:   4%|▍         | 1/26 [00:00<00:13,  1.86it/s]Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/29e925092dee9f14278c53e7e7d876cea8a997bc
+Downloading 'generation_config.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/1af0fad26e05e171990f03cfec41619dc2fed5e9.incomplete'
+Downloading 'model-00003-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/3f86c3f10d3650fa721215fa4ac997da88cb9fc35c22ec9faeeef323f9e9b7bf.incomplete'
+Downloading 'model-00005-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/018ef19d72b44a37632daed0ac6544109ff0b5ba7bdde1233a8f867269aa2d6f.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/1af0fad26e05e171990f03cfec41619dc2fed5e9
+Downloading 'model-00006-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/eb5f95370d9d9f9d7424d49b3d93d88481720f0a8d62c64a2216242d91289137.incomplete'
+Downloading 'model-00007-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/e7faa2abc012883d44d5f293215b04ed20bc4ee50af1375bf094b3e8c67b07b8.incomplete'
+Downloading 'model-00004-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/310e43ad411e3e9c47d59d40fc7e2df16e25d873116237a0770c2110415d3a1b.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0
+Fetching 26 files:  23%|██▎       | 6/26 [00:00<00:02,  7.87it/s]Downloading 'model-00008-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/0c5139d9917c9838d36a77a38969ee77cb0afcf2256026c17e9011338c4518de.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/310e43ad411e3e9c47d59d40fc7e2df16e25d873116237a0770c2110415d3a1b
+Downloading 'model-00009-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/0f80fb5b85d5c88872a16b175d02608a4753b8c4a21968e8f236790fd52c068f.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/3f86c3f10d3650fa721215fa4ac997da88cb9fc35c22ec9faeeef323f9e9b7bf
+Downloading 'model-00010-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/b5390037ae01140376c7aa17cd46052e8cac94248b31d371ee6e97847a0caae2.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/e7faa2abc012883d44d5f293215b04ed20bc4ee50af1375bf094b3e8c67b07b8
+Downloading 'model-00011-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/86ca2173fa36640421d1af54e1277c1411600ed6e24612247606c989823c8bb1.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/eb5f95370d9d9f9d7424d49b3d93d88481720f0a8d62c64a2216242d91289137
+Downloading 'model-00012-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/86e317f6b07f9b2abb69b6ed30d9f954a32383007f222246271de54785bc6f65.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/0d90401d675a964bc7e17fd7815da56086ba2f766668d980403f38fde6030ce3
+Downloading 'model-00013-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/8cdd20e43aae7060247951e10753c55488876b5eb2427903636fe19f1242c81b.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/018ef19d72b44a37632daed0ac6544109ff0b5ba7bdde1233a8f867269aa2d6f
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/b8323dbc037435e17830b803a54ba515d7f6ef773384816a69a34e5e286dd3fb
+Fetching 26 files:  27%|██▋       | 7/26 [05:22<20:26, 64.57s/it]Downloading 'model-00014-of-00014.safetensors' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/31582df66a517328a9093ec4d96730a370d75cbf5a57b79f69ae5eaa8bb42e90.incomplete'
+Downloading 'model.safetensors.index.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/b7f68f12031a25c81d72d46a284fe9e1daa448b8.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/b7f68f12031a25c81d72d46a284fe9e1daa448b8
+Downloading 'preprocessor_config.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/2ea84a437d448ff71b08df68fdd949d5cc4ebb64.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/2ea84a437d448ff71b08df68fdd949d5cc4ebb64
+Downloading 'tokenizer.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/c6cc1014128b19d1fc46b1d30a23e3b1d35db421.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/c6cc1014128b19d1fc46b1d30a23e3b1d35db421
+Downloading 'tokenizer_config.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/00fdaf186647b2bc2ed20b1928ed902abbb1a37b.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/00fdaf186647b2bc2ed20b1928ed902abbb1a37b
+Downloading 'video_preprocessor_config.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/0c5139d9917c9838d36a77a38969ee77cb0afcf2256026c17e9011338c4518de
+Fetching 26 files:  54%|█████▍    | 14/26 [05:23<04:19, 21.60s/it]Downloading 'vocab.json' to '/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/4783fe10ac3adce15ac8f358ef5462739852c569.incomplete'
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/4783fe10ac3adce15ac8f358ef5462739852c569
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/0f80fb5b85d5c88872a16b175d02608a4753b8c4a21968e8f236790fd52c068f
+Fetching 26 files:  58%|█████▊    | 15/26 [06:54<05:28, 29.89s/it]Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/b5390037ae01140376c7aa17cd46052e8cac94248b31d371ee6e97847a0caae2
+Fetching 26 files:  62%|██████▏   | 16/26 [08:29<06:33, 39.39s/it]Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/8cdd20e43aae7060247951e10753c55488876b5eb2427903636fe19f1242c81b
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/86e317f6b07f9b2abb69b6ed30d9f954a32383007f222246271de54785bc6f65
+Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/86ca2173fa36640421d1af54e1277c1411600ed6e24612247606c989823c8bb1
+Fetching 26 files:  65%|██████▌   | 17/26 [08:42<05:13, 34.80s/it]Download complete. Moving file to /home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/blobs/31582df66a517328a9093ec4d96730a370d75cbf5a57b79f69ae5eaa8bb42e90
+Fetching 26 files:  77%|███████▋  | 20/26 [08:42<02:00, 20.04s/it]Fetching 26 files: 100%|██████████| 26/26 [08:42<00:00, 20.09s/it]
+/home/ruthvik/.cache/huggingface/hub/models--Qwen--Qwen3-VL-32B-Thinking/snapshots/7edd10ffd1196091948fb245ff63e406ccb2d4d1
