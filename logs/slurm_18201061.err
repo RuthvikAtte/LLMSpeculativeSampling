@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/u/ratte/LLMSpeculativeSampling/run_32b_standalone.py", line 111, in <module>
+    main()
+  File "/u/ratte/LLMSpeculativeSampling/run_32b_standalone.py", line 56, in main
+    response = client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/openai/_utils/_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 1211, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/openai/_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/.conda/envs/specsampling/lib/python3.12/site-packages/openai/_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 40960 tokens. However, you requested 40960 output tokens and your prompt contains 232 characters (more than 0 characters, which is the upper bound for 0 input tokens). Please reduce the length of the input prompt or the number of requested output tokens. (parameter=input_text, value=232)", 'type': 'BadRequestError', 'param': 'input_text', 'code': 400}}

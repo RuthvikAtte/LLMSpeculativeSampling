@@ -1,0 +1,46 @@
+Node layout:
+  Node1 (32B target): gpua006  →  http://gpua006:8000/v1
+  Node2 (2B draft):   gpua007  →  http://gpua007:8001/v1
+Tue May 12 22:34:11 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:07:00.0 Off |                    0 |
+| N/A   28C    P0             52W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:46:00.0 Off |                    0 |
+| N/A   28C    P0             52W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:85:00.0 Off |                    0 |
+| N/A   27C    P0             51W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C7:00.0 Off |                    0 |
+| N/A   28C    P0             52W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking model weights...
+Model weights found.
+All pre-flight checks passed.
+=== Manual token-level spec decode (32B target + 2B draft, 2 nodes) ===
+=== Starting 32b_target on gpua006:8000 (TP=4 max_model_len=default) ===
+=== Starting 2b_draft on gpua007:8001 (TP=1 max_model_len=131072) ===
+Waiting for 32B target at http://gpua006:8000/v1 ...
+32B target ready.
+Waiting for 2B draft at http://gpua007:8001/v1 ...
+ERROR: 2B draft server died — see /u/ratte/LLMSpeculativeSampling/results_vl_specdecode_manual_20260512_223408/vllm_server_2b_draft.log
+Stopping vLLM servers...

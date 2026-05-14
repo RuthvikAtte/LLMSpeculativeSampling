@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/u/ratte/LLMSpeculativeSampling/run_vl_specdecode_manual.py", line 386, in <module>
+    main()
+  File "/u/ratte/LLMSpeculativeSampling/run_vl_specdecode_manual.py", line 370, in main
+    if per_pos_rate := _mean("per_pos_acceptance_rate"):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/ratte/LLMSpeculativeSampling/run_vl_specdecode_manual.py", line 325, in _mean
+    return sum(vals) / len(vals) if vals else None
+           ^^^^^^^^^
+TypeError: unsupported operand type(s) for +: 'int' and 'list'

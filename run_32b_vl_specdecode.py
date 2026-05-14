@@ -46,7 +46,8 @@ SAMPLING_KWARGS = dict(
 # ---------------------------------------------------------------------------
 
 def build_prompt(item: dict) -> str:
-    question = item["question"]
+    import re
+    question = re.sub(r'<image\d+>', '', item["question"]).strip()
     choices  = item.get("options", "")
     len_choices = len(choices)
     opts = [chr(ord("A") + i) for i in range(len_choices)]

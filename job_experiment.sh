@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=specdecode-qwen
 #SBATCH --account=bgum-delta-gpu
-#SBATCH --partition=gpuA40x4
+#SBATCH --partition=gpuA100x4
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16

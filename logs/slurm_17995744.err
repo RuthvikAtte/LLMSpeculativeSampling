@@ -1,0 +1,2 @@
+mkdir: cannot create directory ‘/var/spool/slurmd/job17995744/results_a100_20260501_134957’: Permission denied
+mkdir: cannot create directory ‘logs’: Permission denied

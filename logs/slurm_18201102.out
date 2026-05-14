@@ -1,0 +1,129 @@
+Tue May 12 19:09:51 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.148.08             Driver Version: 570.148.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:07:00.0 Off |                    0 |
+| N/A   30C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-40GB          On  |   00000000:46:00.0 Off |                    0 |
+| N/A   30C    P0             54W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-40GB          On  |   00000000:85:00.0 Off |                    0 |
+| N/A   30C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-40GB          On  |   00000000:C7:00.0 Off |                    0 |
+| N/A   30C    P0             53W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+Checking model weights...
+Model weights found.
+All pre-flight checks passed.
+=== Script 1: 32B standalone (baseline) ===
+=== Starting vLLM server: 32b ===
+Server PID=2701854 — waiting for health...
+Server ready.
+Connected to vLLM server at http://localhost:8000/v1  (model: Qwen/Qwen3-32B)
+Loaded 6 questions from mathvision_mini.json
+
+[Q0] latency=26.63s  tokens=1403  tok/s=52.7
+[Q1] latency=43.55s  tokens=2397  tok/s=55.0
+[Q2] latency=22.56s  tokens=1243  tok/s=55.1
+[Q3] latency=21.60s  tokens=1190  tok/s=55.1
+[Q4] latency=37.94s  tokens=2088  tok/s=55.0
+[Q5] latency=29.21s  tokens=1608  tok/s=55.0
+
+Results saved to /u/ratte/LLMSpeculativeSampling/results_20260512_190949/run_32b_standalone_results.json
+
+--- Summary Table ---
+   Q   Latency (s)    Tokens     Tok/s
+----------------------------------------
+   0         26.63      1403      52.7
+   1         43.55      2397      55.0
+   2         22.56      1243      55.1
+   3         21.60      1190      55.1
+   4         37.94      2088      55.0
+   5         29.21      1608      55.0
+----------------------------------------
+ ALL        181.49      9929      54.7
+Stopping vLLM server (PID=2701854)...
+=== Script 2: 1.7B standalone (draft ceiling) ===
+=== Starting vLLM server: 1p7b ===
+Server PID=2704232 — waiting for health...
+Server ready.
+Connected to vLLM server at http://localhost:8000/v1  (model: Qwen/Qwen3-1.7B)
+Loaded 6 questions from mathvision_mini.json
+
+[Q0] latency=3.85s  tokens=1031  tok/s=267.9
+[Q1] latency=4.98s  tokens=1520  tok/s=305.4
+[Q2] latency=3.10s  tokens=948  tok/s=305.6
+[Q3] latency=2.23s  tokens=682  tok/s=305.2
+[Q4] latency=4.90s  tokens=1495  tok/s=305.4
+[Q5] latency=3.41s  tokens=1042  tok/s=305.5
+
+Results saved to /u/ratte/LLMSpeculativeSampling/results_20260512_190949/run_2b_standalone_results.json
+
+--- Summary Table ---
+   Q   Latency (s)    Tokens     Tok/s
+----------------------------------------
+   0          3.85      1031     267.9
+   1          4.98      1520     305.4
+   2          3.10       948     305.6
+   3          2.23       682     305.2
+   4          4.90      1495     305.4
+   5          3.41      1042     305.5
+----------------------------------------
+ ALL         22.47      6718     299.0
+Stopping vLLM server (PID=2704232)...
+=== Script 3: Speculative decoding (32B + 1.7B draft) ===
+=== Starting vLLM server: specdecode ===
+Server PID=2705221 — waiting for health...
+Server ready.
+Target model: Qwen/Qwen3-32B
+Draft model:  Qwen/Qwen3-1.7B  (num_spec_tokens=5)
+Server:       http://localhost:8000
+
+Loaded 6 questions from mathvision_mini.json
+
+[Q0] latency=43.99s  tokens=2107  tok/s=47.9  α=0.5658  MAL=3.829  theory_speedup=2.23x
+       per-position: p0=0.402  p1=0.000  p2=0.000  p3=0.000  p4=0.000
+[Q1] latency=35.84s  tokens=2018  tok/s=56.3  α=0.6551  MAL=4.275  theory_speedup=2.67x
+       per-position: p0=0.515  p1=0.000  p2=0.000  p3=0.000  p4=0.000
+[Q2] latency=23.74s  tokens=1114  tok/s=46.9  α=0.5118  MAL=3.559  theory_speedup=2.01x
+       per-position: p0=0.307  p1=0.000  p2=0.000  p3=0.000  p4=0.000
+[Q3] latency=19.93s  tokens=911  tok/s=45.7  α=0.4958  MAL=3.479  theory_speedup=1.95x
+       per-position: p0=0.319  p1=0.000  p2=0.000  p3=0.000  p4=0.000
+[Q4] latency=67.38s  tokens=3468  tok/s=51.5  α=0.5776  MAL=3.888  theory_speedup=2.28x
+       per-position: p0=0.422  p1=0.000  p2=0.000  p3=0.000  p4=0.000
+[Q5] latency=36.14s  tokens=1762  tok/s=48.8  α=0.5377  MAL=3.688  theory_speedup=2.11x
+       per-position: p0=0.368  p1=0.000  p2=0.000  p3=0.000  p4=0.000
+
+Results saved to /u/ratte/LLMSpeculativeSampling/results_20260512_190949/run_specdecode_results.json
+
+--- Summary Table ---
+  Q   Lat(s)    Toks    Tok/s        α    MAL   Theory
+--------------------------------------------------------
+  0    43.99    2107     47.9   0.5658  3.829    2.23x
+  1    35.84    2018     56.3   0.6551  4.275    2.67x
+  2    23.74    1114     46.9   0.5118  3.559    2.01x
+  3    19.93     911     45.7   0.4958  3.479    1.95x
+  4    67.38    3468     51.5   0.5776  3.888    2.28x
+  5    36.14    1762     48.8   0.5377  3.688    2.11x
+--------------------------------------------------------
+ALL   227.03   11380     50.1   0.5573  3.786    2.21x
+Stopping vLLM server (PID=2705221)...
+Done. Results in /u/ratte/LLMSpeculativeSampling/results_20260512_190949
